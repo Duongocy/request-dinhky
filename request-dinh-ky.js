@@ -19,7 +19,7 @@ const pool = new Pool({
 cron.schedule('* * * * *', async () => {
   console.log('Chạy mỗi phút!');
   try {            
-            query_string = "SELECT invoice_id,invoice_title,customer, SUM(price*quantity) AS amount,invoice_date FROM invoice_table WHERE user_id ='Long' GROUP BY invoice_id,invoice_date,invoice_title,customer ORDER BY invoice_date DESC;"
+            const query_string = "SELECT invoice_id,invoice_title,customer, SUM(price*quantity) AS amount,invoice_date FROM invoice_table WHERE user_id ='Long' GROUP BY invoice_id,invoice_date,invoice_title,customer ORDER BY invoice_date DESC;"
             console.log("Câu truy vấn : ",query_string);
             const result = await pool.query(query_string);
         } catch (err) {
