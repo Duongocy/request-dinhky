@@ -16,15 +16,14 @@ const pool = new Pool({
     port: 5432,
 });
 
-cron.schedule('* * * * *', async () => {
-  console.log('Chạy mỗi phút!');
-  try {            
-            const query_string = "SELECT invoice_id,invoice_title,customer, SUM(price*quantity) AS amount,invoice_date FROM invoice_table WHERE user_id ='Long' GROUP BY invoice_id,invoice_date,invoice_title,customer ORDER BY invoice_date DESC;"
-            console.log("Câu truy vấn : ",query_string);
-            const result = await pool.query(query_string);
-        } catch (err) {
-            console.error(err);
-        }
+cron.schedule('*/5 * * * *', async () => {
+  console.log('[PING] Giữ database luôn thức 😴➡️😎');
+  try {
+    const result = await pool.query('SELECT 1');
+    console.log(`[PING] OK at ${new Date().toISOString()}`);
+  } catch (err) {
+    console.error('[PING] Fail:', err.message);
+  }
 });
 
 // Khởi động server
