@@ -19,13 +19,11 @@ const pool = new Pool({
 cron.schedule('* * * * *', async () => {
   console.log('Chạy mỗi phút!');
   try {            
-            query_string = "SELECT invoice_id,invoice_title,customer, SUM(price*quantity) AS amount,invoice_date FROM invoice_table WHERE user_id ='"+user_id+"' GROUP BY invoice_id,invoice_date,invoice_title,customer ORDER BY invoice_date DESC;"
+            query_string = "SELECT invoice_id,invoice_title,customer, SUM(price*quantity) AS amount,invoice_date FROM invoice_table WHERE user_id ='Long' GROUP BY invoice_id,invoice_date,invoice_title,customer ORDER BY invoice_date DESC;"
             console.log("Câu truy vấn : ",query_string);
             const result = await pool.query(query_string);
-            res.json(result.rows);
         } catch (err) {
             console.error(err);
-            res.status(500).send('Lỗi khi lấy dữ liệu');
         }
 });
 
