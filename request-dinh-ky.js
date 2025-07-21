@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors'); // Import thư viện cors
 const { Pool } = require('pg');
-const tokenlib = require('jsonwebtoken');//khai báo thư viện jkt để tạo token cho mỗi lần đăng nhập
 const cron = require('node-cron');
 
 const app = express();
