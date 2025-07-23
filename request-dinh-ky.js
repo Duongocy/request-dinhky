@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const cron = require('node-cron');
-const fetch = require('node-fetch'); // hoặc axios
 const https = require('https');
 
 const app = express();
